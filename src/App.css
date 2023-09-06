@@ -1,0 +1,193 @@
+.App {
+	padding: 0 20px;
+	box-sizing: border-box;
+}
+html,
+body {
+	overflow-x: hidden;
+  max-width: 800px;
+}
+.App-logo {
+	height: 40vmin;
+	pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.App-logo {
+		animation: App-logo-spin infinite 20s linear;
+	}
+}
+
+.App-header {
+	background-color: #282c34;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
+}
+
+.App-link {
+	color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.row {
+	padding: 5px 0;
+}
+input,
+label {
+	cursor: pointer;
+}
+.btnSet {
+	margin-top: 20px;
+	display: flex;
+	gap: 5px;
+  justify-content: center;
+}
+.btnSet button {
+	padding: 10px 30px;
+	background: darkred;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.btnSet button:last-of-type {
+	background: darkblue;
+}
+.score {
+	margin-top: 20px;
+	background: #eee;
+	padding: 20px;
+}
+.hint {
+	margin-top: 10px;
+	background: rgb(203, 229, 245);
+	padding: 10px;
+	max-width: 800px;
+	word-break: keep-all;
+	line-height: 1.5;
+}
+.feedBack {
+	background: #eee;
+	padding: 20px;
+	margin-top: 20px;
+	border-radius: 5px;
+}
+.feedBack ul li {
+	padding: 3px 0;
+}
+textarea {
+	width: 100%;
+	padding: 20px;
+	height: 100px;
+	box-sizing: border-box;
+}
+.flexEnd{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+.flexEnd button{
+  background: #aaa!important;
+}
+.rows{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.btnSet.sm {
+  margin-top: 5px;
+}
+.btnSet.sm button{
+  padding: 7px;
+  background: #aaa;
+}
+.btnSet.sm button:first-of-type{
+  background: #666;
+}
+.btnSet.sm button:last-of-type{
+  background: red;
+}
+.right{
+  display: flex;align-items: center;
+  gap:10px;
+}
+.right input{
+  height: 30px;
+  margin: 3px 0;
+}
+.navbar{
+	display: flex;
+	align-items: center;
+	gap:10px;
+	margin-bottom: 10px;
+}
+.navbar ul{
+	display: flex;
+	gap:10px;
+	padding-left: 0;
+	padding: 10px;
+	margin-bottom: 0;
+}
+.navbar ul li{
+	list-style: none;
+}
+.navbar ul li a{
+	font-size: 18px;
+	padding: 5px;
+	color: #333;
+}
+h2{
+	font-size: 1.5rem;
+}
+h3{
+	font-size: 1.2rem;
+}
+body{
+	font-family: sans-serif;
+}
+.wrap{
+	padding-left: 10px;
+}
+.row{
+	display: flex;
+	align-items: center;
+	gap:10px;
+}
+.row label{
+	margin-bottom: 0;
+}
+.question{
+	position: relative;
+	right: -18px;
+	padding: 10px 0;
+}
+h3{
+	margin-bottom: 0;
+}
+.hint{
+	display: flex;
+	flex-direction: column;
+	gap:10px;
+}
+.feedBack h3{
+	margin-bottom: 10px;
+}
+.wrap h2{
+	margin-top: 20px;
+}
+.feedBack .info{
+	margin-top: 20px;
+}
