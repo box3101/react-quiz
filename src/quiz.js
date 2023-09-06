@@ -45,6 +45,7 @@ function Quiz() {
 
   // 로컬스트레이지 시작
   const [피드백내용, 피드백내용변경] = useState('');
+  const [피드백리스트, 피드백리스트변경] = useState([])
 
   useEffect(function () {
     if (localStorage.getItem('피드백리스트') === null) localStorage.setItem('피드백리스트', JSON.stringify([]))
@@ -60,6 +61,14 @@ function Quiz() {
     copy.push(피드백내용);
     localStorage.setItem("피드백리스트", JSON.stringify(copy));
     피드백내용변경('');
+  }
+
+  function 피드백삭제(idx) {
+    let a = JSON.parse(localStorage.getItem("피드백리스트"));
+    let copy = [...a];
+    copy.splice(idx, 1);
+    localStorage.setItem("피드백리스트", JSON.stringify(copy));
+    피드백리스트변경(copy)
   }
   // 로컬스트레이지 시작 eee
 
@@ -111,12 +120,17 @@ function Quiz() {
                 <ul>
                   {
                     JSON.parse(localStorage.getItem("피드백리스트")) === null
-                    ? null
-                    : JSON.parse(localStorage.getItem("피드백리스트")).map((item,idx) => {
-                      return (
-                        <li key={idx}>{item}</li>
-                      )
-                    })
+                      ? null
+                      : JSON.parse(localStorage.getItem("피드백리스트")).map((item, idx) => {
+                        return (
+                          <li key={idx}>
+                            <div className="flex aic jcb btnSet sm">
+                              {item}
+                              <button onClick={() => 피드백삭제(idx)}>삭제</button>
+                            </div>
+                          </li>
+                        )
+                      })
                   }
                 </ul>
               </div>

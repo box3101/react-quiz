@@ -191,3 +191,14 @@ h3{
 .feedBack .info{
 	margin-top: 20px;
 }
+
+.flex{
+	display:flex;
+}
+.flex.aic{
+	align-items: center;
+}
+.flex.jcb{
+	justify-content: space-between;
+}
+
