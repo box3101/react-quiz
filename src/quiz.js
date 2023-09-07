@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import data from "./data";
-import axios from 'axios';
 
 function Quiz() {
 
@@ -9,9 +8,6 @@ function Quiz() {
   const [hint, setHint] = useState(false);
   const [답안, set답안] = useState("");
   const [randomData, setRandomData] = useState(data);
-
-  // 상태 설정
-  const [feedBacks, setFeedBacks] = useState([]);
 
 
   // 문제를 무작위로 섞기
@@ -45,11 +41,18 @@ function Quiz() {
 
   // 로컬스트레이지 시작
   const [피드백내용, 피드백내용변경] = useState('');
-  const [피드백리스트, 피드백리스트변경] = useState([])
+  const [피드백리스트, 피드백리스트변경] = useState([]);
+  const [상태버튼, 상태버튼변경] = useState([]);
 
   useEffect(function () {
-    if (localStorage.getItem('피드백리스트') === null) localStorage.setItem('피드백리스트', JSON.stringify([]))
-  }, [])
+    if (localStorage.getItem('피드백리스트') === null) localStorage.setItem('피드백리스트', JSON.stringify([]));
+
+    let 피드백리스트갯수 = JSON.parse(localStorage.getItem('피드백리스트')).length;
+
+    let 새로운상태버튼들 = Array(피드백리스트갯수).fill(false);
+    상태버튼변경(새로운상태버튼들);
+  }, []);
+
 
   function 피드백저장(e) {
     피드백내용변경(e.target.value);
@@ -69,6 +72,26 @@ function Quiz() {
     copy.splice(idx, 1);
     localStorage.setItem("피드백리스트", JSON.stringify(copy));
     피드백리스트변경(copy)
+  }
+
+  function 상태변경(idx, boolean) {
+    let copy = [...상태버튼];
+    copy[idx] = boolean;
+    상태버튼변경(copy);
+  }
+  
+  const [새로운상태값,새로운상태값변경] = useState("");
+
+  function 업데이트할상태값(e){
+    새로운상태값변경(e.target.value);
+  }
+
+  function 피드백변경함수(idx) {
+    let a = JSON.parse(localStorage.getItem("피드백리스트"));
+    let copy = [...a];
+    copy[idx] = 새로운상태값;
+    localStorage.setItem("피드백리스트", JSON.stringify(copy));
+    새로운상태값변경('');
   }
   // 로컬스트레이지 시작 eee
 
@@ -124,9 +147,22 @@ function Quiz() {
                       : JSON.parse(localStorage.getItem("피드백리스트")).map((item, idx) => {
                         return (
                           <li key={idx}>
-                            <div className="flex aic jcb btnSet sm">
+                            <div className="flex aic jcb">
                               {item}
-                              <button onClick={() => 피드백삭제(idx)}>삭제</button>
+
+                              {
+                                상태버튼[idx] === !false
+                                  ? <div className="btnSet sm">
+                                    <input type="text" onChange={업데이트할상태값} />
+                                    <button onClick={()=>피드백변경함수(idx)}>업데이트</button>
+                                    <button onClick={() => 상태변경(idx, false)}>취소</button>
+                                  </div>
+                                  :
+                                  <div className="btnSet sm">
+                                    <button onClick={() => 상태변경(idx, true)}>수정</button>
+                                    <button onClick={() => 피드백삭제(idx)}>삭제</button>
+                                  </div>
+                              }
                             </div>
                           </li>
                         )
